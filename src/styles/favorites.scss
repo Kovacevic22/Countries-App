@@ -1,0 +1,27 @@
+.home-btn {
+    text-align: left;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+.favorites-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        color: white;
+        padding-bottom: 40px;
+    }
+    p {
+        color: red;
+        padding: 20px;
+    }
+}

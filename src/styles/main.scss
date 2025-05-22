@@ -1,0 +1,88 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+body {
+    background-color: hsl(210, 10%, 12%);
+}
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    input[type="text"]{
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 10px;
+        padding: 10px;
+        border: none;
+        background-color: hsl(210, 10%, 20%);
+        color: white;
+    }
+    input:focus {
+        outline: none;
+        border: none; 
+        box-shadow: 0 0 5px hsl(210, 10%, 50%);
+    }
+    button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        &:hover svg {
+            color: hsl(210, 12%, 59%);
+            transform: scale(1.1);
+        }
+    }
+
+    button svg {
+        color: hsl(210, 10%, 50%);
+        font-size: 30px;
+        transition: all 0.3s ease;
+    }
+
+}
+.noresult-message{
+    color: hsl(0, 100%, 50%);
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+.favorites-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
