@@ -16,6 +16,11 @@ function Home(){
     const [loading, setLoading] = useState(true);
     const [noResults, setNoResults] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const countriesPerPage = 18;
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
     useEffect(() => {
         const fetchData = async () =>{
             try{
@@ -39,13 +44,17 @@ function Home(){
             window.removeEventListener('scroll', handleScroll);
         };
     },[]);
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentPage]);
     const handleSearch = async(e) => {
         e.preventDefault();
         if(!search.trim())return;
         if(loading)return;
         setLoading(true);
         setError(null);
-        setNoResults(false);  
+        setNoResults(false);
+        setCurrentPage(1);  
         try{
             const searchResult = await fetchCountryByName(search);
             if(searchResult && searchResult.length > 0){
@@ -74,9 +83,18 @@ function Home(){
             <div className='country-card-container'>
                 {loading && <p>Loading...</p>}
                 {error && <p>{error}</p>}
-                {countries.map((country) => (
+                {currentCountries.map((country) => (
                     <CountryCard key={country.name.common} country={country}/>
                 ))}
+            </div>
+            <div className="pagination">
+                <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}disabled={currentPage === 1}>
+                    Prev
+                </button>
+                <span>Page {currentPage} of {Math.ceil(countries.length / countriesPerPage)}</span>
+                <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(countries.length / countriesPerPage)))}disabled={currentPage === Math.ceil(countries.length / countriesPerPage)}>
+                    Next
+                </button>
             </div>
             {showScrollToTop &&<button className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><FontAwesomeIcon icon={faArrowUp} /></button>}
             

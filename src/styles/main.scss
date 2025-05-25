@@ -86,3 +86,34 @@ form {
         transform: scale(1.2);
     }
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 40px;
+    color: white;
+    button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #333;
+        color: #fff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover:not(:disabled) {
+            background-color: #555;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    .page-indicator {
+        font-weight: 500;
+        color: #444;
+    }
+}
