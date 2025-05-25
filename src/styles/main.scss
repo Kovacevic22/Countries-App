@@ -5,8 +5,9 @@
     font-family: 'Inter', sans-serif;
 }
 body {
-    background-color: hsl(210, 10%, 12%);
+    background: linear-gradient(135deg, #121721 0%, #1a2230 100%);
 }
+
 form {
     display: flex;
     flex-direction: row;
@@ -20,13 +21,13 @@ form {
         border-radius: 10px;
         padding: 10px;
         border: none;
-        background-color: hsl(210, 10%, 20%);
-        color: white;
+        background-color: hsl(215, 20%, 22%);
+        color: hsl(0, 0%, 95%);
     }
     input:focus {
         outline: none;
         border: none; 
-        box-shadow: 0 0 5px hsl(210, 10%, 50%);
+        box-shadow: 0 0 6px hsl(215, 90%, 65%);
     }
     button {
         border: none;
@@ -38,13 +39,13 @@ form {
         justify-content: center;
         margin-left: 10px;
         &:hover svg {
-            color: hsl(210, 12%, 59%);
+            color: hsl(215, 70%, 75%);
             transform: scale(1.1);
         }
     }
 
     button svg {
-        color: hsl(210, 10%, 50%);
+        color: hsl(215, 30%, 60%);
         font-size: 30px;
         transition: all 0.3s ease;
     }
@@ -63,7 +64,7 @@ form {
   background-color: transparent;
   border: none;
   font-size: 25px;
-  color: white;
+  color: hsl(210, 30%, 80%);
   cursor: pointer;
   transition: transform 0.3s;
 
@@ -78,7 +79,7 @@ form {
     background-color: transparent;
     border: none;
     font-size: 25px;
-    color: white;
+    color: hsl(210, 30%, 80%);
     cursor: pointer;
     transition: transform 0.3s;
 
