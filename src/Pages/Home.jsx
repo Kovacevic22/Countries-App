@@ -47,6 +47,7 @@ function Home(){
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentPage]);
+    /*
     const handleSearch = async(e) => {
         e.preventDefault();
         if(!search.trim())return;
@@ -71,7 +72,35 @@ function Home(){
             setLoading(false);
         }
     }
+    */
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        if (!search.trim()) return;
+        if (loading) return;
+        setLoading(true);
+        setError(null);
+        setNoResults(false);
+        setCurrentPage(1);
 
+        try {
+            const searchResult = await fetchCountryByName(search);
+            const filteredResult = searchResult.filter(country =>
+                country.name.common.toLowerCase().startsWith(search.toLowerCase())
+            );
+            if (filteredResult.length > 0) {
+                setCountries(filteredResult);
+                setNoResults(false);
+            } else {
+                setCountries([]);
+                setNoResults(true);
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Failed to load countries");
+        } finally {
+            setLoading(false);
+        }
+    };
     return(
         <>
             <button className="favorites-btn" onClick={handleFavorites} aria-label="Go to favorites"><FontAwesomeIcon icon={faBookmark} /></button>
