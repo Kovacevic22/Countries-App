@@ -47,60 +47,39 @@ function Home(){
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentPage]);
-    /*
+
     const handleSearch = async(e) => {
         e.preventDefault();
-        if(!search.trim())return;
         if(loading)return;
         setLoading(true);
         setError(null);
         setNoResults(false);
         setCurrentPage(1);  
-        try{
-            const searchResult = await fetchCountryByName(search);
-            if(searchResult && searchResult.length > 0){
-                setCountries(searchResult);
-                setNoResults(false);
-            } else {
-                setCountries([]);
-                setNoResults(true);
-            }
-        }catch(err){
-            console.error(err);
-            setError("Failed to load countries");
-        }finally{
-            setLoading(false);
-        }
-    }
-    */
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        if (!search.trim()) return;
-        if (loading) return;
-        setLoading(true);
-        setError(null);
-        setNoResults(false);
-        setCurrentPage(1);
-
+        
         try {
-            const searchResult = await fetchCountryByName(search);
-            const filteredResult = searchResult.filter(country =>
-                country.name.common.toLowerCase().startsWith(search.toLowerCase())
-            );
-            if (filteredResult.length > 0) {
-                setCountries(filteredResult);
-                setNoResults(false);
+            if(!search.trim()) {
+                const data = await fetchCountries();
+                setCountries(data);
             } else {
-                setCountries([]);
-                setNoResults(true);
+                const searchResult = await fetchCountryByName(search);
+                const filteredResult = searchResult.filter(country =>
+                    country.name.common.toLowerCase().startsWith(search.toLowerCase())
+                );
+                if (filteredResult.length > 0) {
+                    setCountries(filteredResult);
+                    setNoResults(false);
+                } else {
+                    setCountries([]);
+                    setNoResults(true);
+                }
             }
         } catch (err) {
-            console.error(err);
-            setError("Failed to load countries");
+            setCountries([]);
+            setNoResults(true);
         } finally {
             setLoading(false);
         }
-    };
+    }
     return(
         <>
             <button className="favorites-btn" onClick={handleFavorites} aria-label="Go to favorites"><FontAwesomeIcon icon={faBookmark} /></button>
@@ -110,8 +89,8 @@ function Home(){
             </form>
             {noResults && <p className="noresult-message">No countries found for "{search}"</p>}
             <div className='country-card-container'>
-                {loading && <p>Loading...</p>}
-                {error && <p>{error}</p>}
+                {loading && <p style={{width: "100%", padding: "20px", color: "red", textAlign: "center"}}>Loading...</p>}
+                {error && <p style={{width: "100%", padding: "20px", color: "red", textAlign: "center"}}>{error}</p>}
                 {currentCountries.map((country) => (
                     <CountryCard key={country.name.common} country={country}/>
                 ))}

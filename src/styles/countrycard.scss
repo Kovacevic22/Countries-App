@@ -10,7 +10,7 @@
     margin: 20px;
     position: relative;
     perspective: 1000px;
-
+    animation: fadeInUp 1s ease-out;
     .card-front, .card-back {
       position: absolute;
       width: 100%;
@@ -167,4 +167,15 @@
 
 .active {
   color: red !important;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
