@@ -35,11 +35,10 @@
     }
 
     &:hover .card-back {
-      transform: rotateY(0deg);
+      transform: rotateY(0deg) translateY(-2px);
       box-shadow:
         0 6px 16px rgba(78, 158, 255, 0.6),
         0 12px 30px rgba(78, 158, 255, 0.25);
-      transform: translateY(-2px);
     }
 
     .card-back {
@@ -103,7 +102,7 @@
           .desc-text {
             font-size: 14px;
             line-height: 1.5;
-            color: #d3d3d3; // svetlija siva za bolji kontrast
+            color: #d3d3d3; 
             text-align: justify;
           }
         }
