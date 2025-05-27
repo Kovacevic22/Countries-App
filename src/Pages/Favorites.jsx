@@ -13,8 +13,6 @@ function Favorites() {
     };
 
     const {favorites} = useFavoriteContext();
-
-    if(favorites){
         return(
             <>
             <button className='home-btn' onClick={handleHome} aria-label="Go to home"><FontAwesomeIcon icon={faHouse}/></button>
@@ -29,6 +27,5 @@ function Favorites() {
             </div>
             </>
         );
-    }
 }
 export default Favorites;

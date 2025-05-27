@@ -8,7 +8,7 @@ export const fetchCountries = async () =>{
 }
 
 export const fetchCountryByName = async (name) => {
-    const response = await fetch(`https://restcountries.com/v3.1/name/${name}`);
+    const response = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`);
     const data = await response.json();
     return data;
 }
